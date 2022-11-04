@@ -1,9 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const getTalker = require('./middlewares/getTalker');
+const generateToken = require('./middlewares/generateToken');
 
 const app = express();
 app.use(bodyParser.json());
+app.use(express.json());
 
 const HTTP_OK_STATUS = 200;
 const PORT = '3000';
@@ -25,6 +27,14 @@ app.get('/talker/:id', async (req, res) => {
   const filtedTalker = talker.find((tal) => tal.id === id);
   if (filtedTalker) return res.status(200).send(filtedTalker);
   res.status(404).json({ message: 'Pessoa palestrante não encontrada' });
+});
+  
+app.post('/login', (req, res) => {
+  const { email, password } = req.body;
+  if (email && password) {
+    const token = generateToken();
+    return res.status(200).json({ token });
+  }
 });
 
 app.listen(PORT, () => {
