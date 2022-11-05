@@ -82,6 +82,19 @@ app.put('/talker/:id',
     res.status(200).json(talker[index]);
 });
 
+app.delete('/talker/:id', validAuthorization, async (req, res) => {
+  try {
+  const id = Number(req.params.id);
+  const talkers = await getTalker();
+  const talkerDelete = talkers.filter((talker) => talker.id !== id);
+  const newTalkers = JSON.stringify(talkerDelete, null, 2);
+  await fs.writeFile(talkerPath, newTalkers);
+  res.status(204).json();
+  } catch (erro) {
+    res.status(500).send({ message: erro.message });
+  }
+});
+
 app.listen(PORT, () => {
   console.log('Online');
 });
