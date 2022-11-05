@@ -51,18 +51,35 @@ app.post('/talker',
   validWatched,
   validRate,
   async (req, res) => {
-  const { name, age, talk } = req.body;
-  const talker = await getTalker();
-  const newTalker = {
-    id: talker[talker.length - 1].id + 1,
-    name,
-    age,
-    talk,
-  };
-  const allTalker = JSON.stringify([...talker, newTalker]);
-  console.log(allTalker);
-  await fs.writeFile(talkerPath, allTalker);
-  res.status(201).json(newTalker);
+    const { name, age, talk } = req.body;
+    const talker = await getTalker();
+    const newTalker = {
+      id: talker[talker.length - 1].id + 1,
+      name,
+      age,
+      talk,
+    };
+    const allTalker = JSON.stringify([...talker, newTalker]);
+    console.log(allTalker);
+    await fs.writeFile(talkerPath, allTalker);
+    res.status(201).json(newTalker);
+});
+
+app.put('/talker/:id',
+  validAuthorization, 
+  validName, validAge, 
+  validTalk, 
+  validWatched,
+  validRate,
+  async (req, res) => {
+    const id = Number(req.params.id);
+    const { name, age, talk } = req.body;
+    const talker = await getTalker();
+    const index = talker.findIndex((e) => e.id === id);
+    talker[index] = { id, name, age, talk };
+    const updateTalkers = JSON.stringify(talker, null, 2);
+    await fs.writeFile(talkerPath, updateTalkers);
+    res.status(200).json(talker[index]);
 });
 
 app.listen(PORT, () => {
