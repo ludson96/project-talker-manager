@@ -25,6 +25,16 @@ app.get('/', (_request, response) => {
   response.status(HTTP_OK_STATUS).send();
 });
 
+app.get('/talker/search', validAuthorization, async (req, res) => {
+  const { q } = req.query;
+  const talkers = await getTalker();
+  if (q) {
+    const filterTalkers = talkers.filter((talker) => talker.name.includes(q));
+    return res.status(200).json(filterTalkers);
+  }
+  res.status(200).send(talkers);
+});
+
 app.get('/talker', async (_req, res) => {
   const talker = await getTalker();
   if (talker) return res.status(200).send(talker);
@@ -60,7 +70,6 @@ app.post('/talker',
       talk,
     };
     const allTalker = JSON.stringify([...talker, newTalker]);
-    console.log(allTalker);
     await fs.writeFile(talkerPath, allTalker);
     res.status(201).json(newTalker);
 });
