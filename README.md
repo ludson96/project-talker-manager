@@ -1,15 +1,25 @@
-# Repositório do projeto Talker Manager
-
-# Módulo: BACK-END
-
- ## O que foi desenvolvido
-    
+ # Repositório do projeto Talker Manager
+ ## Módulo: BACK-END
  
-  Repositório possuí projeto desenvolvido no período que estive na <b>Trybe</b> feito para desenvolver uma API de um CRUD (Create, Read, Update e Delete) de cadastro e pesquisa de talkers (Palestrantes) utilizando o módulo fs, seguindo os princípios de uma API RESTful.
-  
----
+Repositório possuí projeto desenvolvido no período que estive na <b>Trybe</b>, abordando os conceitos de API Rest com CRUD completo e seus endpoints. 
+## Informações de aprendizados
 
-## Habilidades
+- Este é um projeto desenvolvido para me ajudar a aprender os principais conceitos de `Nodejs` e `express`;
+- Meu primeiro projeto em `Nodejs` e `express`;
+- Utilizei o Cliente Rest `Thunder Client`, como extensão, para visualizar o retorno do meu acesso.
+## Linguagem usadas
+
+[![Docker][Docker-logo]][Docker-url]
+[![NodeJS][NodeJS-logo]][NodeJS-url]
+[![Express][Express-logo]][Express-url]
+[![ESLint][ESLint-logo]][ESLint-url]
+[![Nodemon][Nodemon-logo]][Nodemon-url]
+ ## O que foi desenvolvido
+
+  Neste projeto com o codinome Talker manager praticamos conceitos de API de um CRUD (Create, Read, Update e Delete) de cadastro e pesquisa de talkers (Palestrantes) utilizando o módulo fs, seguindo os princípios de uma API RESTful.
+
+> Arquivo `docker-compose.yml` e `talker.json` fornecido pela Trybe.
+## Aprendizados
 
 - Realizar operações assíncronas utilizando callbacks;
 - Realizar operações assíncronas utilizando Promises;
@@ -25,29 +35,23 @@
 - Entender a estrutura de uma aplicação Express e como organizar seu código;
 - Criar rotas e aplicar middlewares.
 
----
+## Instruções para instalar e rodar
 
-## Instruções para instalar e rodar os testes de cada requisito
-
-```bash
-# Clone o repositório
-  git clone git@github.com:Ludson96/project-talker-manager.git
-# Entre na pasta do repositório que você acabou de clonar:
-  cd project-talker-manager
-# Já existe um arquivo docker-compose.yml (Disponibilizado pela Trybe). Bastando usar o comando 
-  docker-compose up -d 
-# Instale as dependências e inicialize o projeto
-  npm install
-# Entre no Vs Code para verificar os arquivos usando o atalho no terminal:
-  code .
-#Para iniciar o projeto, execute o comando:
-  npm start
-#  A pasta tests contém os testes que verifica se os comandos estão atendendo o que foi pedido
-# Leia os Requisitos do Projeto logo abaixo explicando o que cada requisito propõem
-# Para rodar os tests use o atalho no terminal:
-  npm run test
+1. Clone o repo:
 ```
+  git clone git@github.com:Ludson96/project-talker-manager.git
+```
+2. Instale as suas dependências:
+```
+  npm install
+```
+3. Já tem um arquivo `docker-compose.yml` criado. Para executar o container, utilize o seguinte comando (sendo a flag -d para executar em segundo plano):
+```
+docker-compose up -d
+```
+4. Recomendo utilizar um Cliente Rest. Eu utilizei o `Thunder Client`, como extensão no VSCode, para visualizar o retorno do meu acesso.
 
+5. O arquivo `talker.json`, fornecido pela Trybe, será utilizado como simulação de um db.
 ## Endpoints
 
 - GET `/talker`  retorna o `status 200` e um array com todas as pessoas palestrantes cadastradas.
@@ -511,9 +515,16 @@
 
 </details>
 
-#### First project using _Node.js_
+---
+> `talker.json` e `docker-compose` fornecido pela Trybe.
 
-#
-> Projeto desenvolvido com Node.js
-
-> talker.json fornecido pela @Trybe
+[Docker-logo]: https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white
+[Docker-url]: https://www.docker.com
+[NodeJS-logo]: https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white
+[NodeJS-url]: https://nodejs.org/en/
+[Express-logo]: https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB
+[Express-url]: https://expressjs.com
+[ESLint-logo]: https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white
+[ESLint-url]: https://eslint.org/
+[Nodemon-logo]: https://img.shields.io/badge/Nodemon-76D04B?logo=nodemon&logoColor=fff&style=for-the-badge
+[Nodemon-url]: https://www.npmjs.com/package/nodemon
