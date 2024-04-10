@@ -1,4 +1,4 @@
- # Repositório do projeto Talker Manager
+ # Repositório do projeto Talker Manager 🗣️
  ## Módulo: BACK-END
  
 Repositório possuí projeto desenvolvido no período que estive na <b>Trybe</b>, abordando os conceitos de API Rest com CRUD completo e seus endpoints. 
