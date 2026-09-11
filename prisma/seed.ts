@@ -1,7 +1,5 @@
 import { prisma } from '../src/database/prisma';
 import bcrypt from 'bcryptjs';
-import fs from 'fs';
-import path from 'path';
 
 async function main() {
   console.log('🌱 Iniciando Seed do Banco de Dados...');
@@ -20,33 +18,48 @@ async function main() {
 
   console.log(`👤 Usuário admin configurado: ${admin.email}`);
 
-  // Se houver arquivo legado talker.json, migra automaticamente os palestrantes de exemplo
-  const talkerJsonPath = path.resolve(__dirname, '../src/talker.json');
-  if (fs.existsSync(talkerJsonPath)) {
-    const rawData = fs.readFileSync(talkerJsonPath, 'utf-8');
-    const talkers = JSON.parse(rawData);
+  // Palestrantes iniciais de demonstração
+  const initialTalkers = [
+    {
+      id: 1,
+      name: 'Henrique Oliveira',
+      age: 38,
+      talk: { watchedAt: '22/10/2020', rate: 5 },
+    },
+    {
+      id: 2,
+      name: 'Heloísa Finley',
+      age: 67,
+      talk: { watchedAt: '17/08/2020', rate: 4 },
+    },
+    {
+      id: 3,
+      name: 'Ricardo Xavier',
+      age: 29,
+      talk: { watchedAt: '03/05/2021', rate: 5 },
+    },
+  ];
 
-    for (const t of talkers) {
-      await prisma.talker.upsert({
-        where: { id: t.id },
-        update: {},
-        create: {
-          id: t.id,
-          name: t.name,
-          age: t.age,
-          userId: admin.id,
-          talk: t.talk ? {
-            create: {
-              watchedAt: t.talk.watchedAt,
-              rate: t.talk.rate,
-            },
-          } : undefined,
+  for (const t of initialTalkers) {
+    await prisma.talker.upsert({
+      where: { id: t.id },
+      update: {},
+      create: {
+        id: t.id,
+        name: t.name,
+        age: t.age,
+        userId: admin.id,
+        talk: {
+          create: {
+            watchedAt: t.talk.watchedAt,
+            rate: t.talk.rate,
+          },
         },
-      });
-    }
-    console.log(`✅ ${talkers.length} palestrantes migrados com sucesso para o banco de dados.`);
+      },
+    });
   }
 
+  console.log(`✅ ${initialTalkers.length} palestrantes cadastrados com sucesso.`);
   console.log('🎉 Seed finalizado com sucesso!');
 }
 

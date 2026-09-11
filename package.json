@@ -1,7 +1,7 @@
 {
-  "name": "sd-0x-project-talker-manager",
-  "version": "1.0.0",
-  "description": "",
+  "name": "talker-manager-api",
+  "version": "2.0.0",
+  "description": "API RESTful profissional em Node.js e TypeScript para gerenciamento de eventos e palestrantes com PostgreSQL, Prisma, JWT e Swagger.",
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "build": "tsc",
@@ -9,23 +9,26 @@
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
     "prisma:seed": "tsx prisma/seed.ts",
-    "test": "jest --runInBand",
-    "test:mocha": "nyc --all --include src mocha src/tests/integration/*.js --exit",
-    "restore": "cp __tests__/seed.json src/talker.json",
-    "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json ."
+    "test": "jest --runInBand"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "nodejs",
+    "typescript",
+    "express",
+    "prisma",
+    "postgresql",
+    "jwt",
+    "swagger",
+    "zod"
+  ],
+  "author": "Ludson",
+  "license": "MIT",
   "dependencies": {
     "bcryptjs": "^3.0.3",
-    "body-parser": "1.19.0",
     "cors": "^2.8.6",
-    "crypto-js": "4.0.0",
     "dotenv": "^17.4.2",
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
-    "express-rescue": "1.1.30",
     "jsonwebtoken": "^9.0.3",
     "swagger-ui-express": "^5.0.1",
     "zod": "^4.6.2"
@@ -40,17 +43,10 @@
     "@types/node": "^22.20.2",
     "@types/supertest": "^7.2.1",
     "@types/swagger-ui-express": "^4.1.8",
-    "chai": "4.3.4",
-    "eslint": "6.8.0",
-    "eslint-config-trybe-backend": "1.0.1",
-    "frisby": "2.1.3",
-    "jest": "26.6.1",
-    "mocha": "8.4.0",
-    "nodemon": "2.0.15",
-    "nyc": "15.1.0",
+    "jest": "^26.6.1",
     "prisma": "^6.19.3",
-    "sinon": "11.1.1",
     "supertest": "^7.2.2",
+    "ts-jest": "^26.5.6",
     "tsx": "^4.23.13",
     "typescript": "^5.9.3"
   }
