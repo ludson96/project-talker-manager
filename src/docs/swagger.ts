@@ -11,8 +11,8 @@ export const swaggerDocument = {
   },
   servers: [
     {
-      url: 'http://localhost:3000',
-      description: 'Servidor Local',
+      url: '/',
+      description: 'Servidor Atual (Local / Render)',
     },
   ],
   components: {

@@ -9,9 +9,10 @@ describe('API Health & Basic Endpoints', () => {
     expect(response.body).toHaveProperty('uptime');
   });
 
-  it('GET / deve responder com 200 (compatibilidade)', async () => {
+  it('GET / deve redirecionar para /api-docs', async () => {
     const response = await request(app).get('/');
-    expect(response.status).toBe(200);
+    expect(response.status).toBe(302);
+    expect(response.header.location).toBe('/api-docs');
   });
 
   it('GET /api-docs deve servir a página do Swagger UI', async () => {

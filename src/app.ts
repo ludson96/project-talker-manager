@@ -19,9 +19,9 @@ app.get('/health', (_req: Request, res: Response) => {
   return res.status(200).json({ status: 'ok', uptime: process.uptime(), timestamp: new Date().toISOString() });
 });
 
-// Endpoint legado original mantido
+// Redirecionamento da raiz diretamente para o Swagger interativo
 app.get('/', (_req: Request, res: Response) => {
-  return res.status(200).send();
+  return res.redirect('/api-docs');
 });
 
 // Roteamento
