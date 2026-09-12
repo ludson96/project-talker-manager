@@ -20,6 +20,7 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 ENV PORT=3000
+ENV DATABASE_URL="file:/app/prisma/dev.db"
 
 # Copia manifestos e instala apenas dependências de produção
 COPY package*.json ./
