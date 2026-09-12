@@ -34,4 +34,5 @@ COPY --from=builder /app/dist ./dist
 
 EXPOSE 3000
 
-CMD ["sh", "-c", "npx prisma migrate deploy && node dist/server.js"]
+# Inicializa o banco SQLite embutido, executa o seed demonstrativo e inicia o servidor
+CMD ["sh", "-c", "npx prisma db push && npm run prisma:seed && node dist/server.js"]

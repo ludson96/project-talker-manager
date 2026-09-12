@@ -292,4 +292,9 @@ $RECYCLE.BIN/
 .cursor/
 .devin/
 
+# SQLite local databases
+*.db
+*.db-journal
+dev.db
+
 # End of https://www.toptal.com/developers/gitignore/api/node,macos,windows,linux,visualstudiocode,intellij

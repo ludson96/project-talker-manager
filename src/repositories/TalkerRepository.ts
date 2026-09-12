@@ -28,7 +28,7 @@ export class TalkerRepository {
   async search(query?: string, rate?: number) {
     const talkers = await prisma.talker.findMany({
       where: {
-        name: query ? { contains: query, mode: 'insensitive' } : undefined,
+        name: query ? { contains: query } : undefined,
         talk: rate ? { rate } : undefined,
       },
       include: {
