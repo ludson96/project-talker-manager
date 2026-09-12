@@ -89,28 +89,29 @@ Access the application running in production:
 ## 🏛️ Solution Architecture
 The application is structured following the **Layered Architecture (MSC with Repository Pattern)** principles, ensuring strict separation of concerns between HTTP handlers, business logic, and database access:
 
-```
-[ Client / Swagger / Frontend ]
-               │
-               ▼
-       [ Express Router ]
-               │
-         ┌─────┴─────┐
-         ▼           ▼
-[ authMiddleware ]  [ validateRequest (Zod) ]
-         │           │
-         └─────┬─────┘
-               ▼
-     [ Controller Layer ]  ──> Extracts params/body and responds with HTTP status
-               │
-               ▼
-      [ Service Layer ]    ──> Domain business logic, metrics, and rules
-               │
-               ▼
-    [ Repository Layer ]   ──> Data isolation layer powered by Prisma Client
-               │
-               ▼
-     [ SQLite Database ]   ──> Self-contained dev.db relational database
+```mermaid
+flowchart TD
+    Client(["🌐 Client / Swagger UI / Frontend"]) --> Router["🔀 Express Router"]
+    
+    subgraph Middlewares["🛡️ Middleware Layer"]
+        Router --> Auth["authMiddleware (JWT)"]
+        Router --> Zod["validateRequest (Zod)"]
+    end
+
+    Auth --> Controller["🎮 Controller Layer"]
+    Zod --> Controller
+
+    subgraph Core["⚙️ Application Core"]
+        Controller -->|"Calls business logic"| Service["🧠 Service Layer (Business Logic)"]
+        Service -->|"Abstracted data access"| Repo["📦 Repository Layer (Prisma ORM)"]
+    end
+
+    subgraph Data["💾 Persistence Layer"]
+        Repo -->|"SQL Queries"| DB[("🗄️ SQLite Database (dev.db)")]
+    end
+
+    Controller -.->|"Unhandled Exceptions / AppError"| ErrorMid["🚨 Global Error Handler"]
+    ErrorMid -.->|"Standardized JSON (400, 401, 404, 500)"| Client
 ```
 
 ## 📁 Repository Structure

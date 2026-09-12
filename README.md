@@ -89,28 +89,29 @@ Acesse a aplicação em produção:
 ## 🏛️ Arquitetura da Solução
 A aplicação segue os princípios de **Arquitetura em Camadas (Layered Architecture / MSC com Repository Pattern)**, promovendo isolamento total entre protocolo HTTP, regras de domínio e acesso a banco de dados:
 
-```
-[ Cliente / Swagger / Frontend ]
-               │
-               ▼
-       [ Express Router ]
-               │
-         ┌─────┴─────┐
-         ▼           ▼
-[ authMiddleware ]  [ validateRequest (Zod) ]
-         │           │
-         └─────┬─────┘
-               ▼
-     [ Controller Layer ]  ──> Extrai params/body e devolve status HTTP
-               │
-               ▼
-      [ Service Layer ]    ──> Regras de negócio, cálculos e validações
-               │
-               ▼
-    [ Repository Layer ]   ──> Isolamento de acesso a dados via Prisma
-               │
-               ▼
-     [ SQLite Database ]   ──> dev.db autocontido e relacional
+```mermaid
+flowchart TD
+    Client(["🌐 Cliente / Swagger UI / Frontend"]) --> Router["🔀 Express Router"]
+    
+    subgraph Middlewares["🛡️ Camada de Middlewares"]
+        Router --> Auth["authMiddleware (JWT)"]
+        Router --> Zod["validateRequest (Zod)"]
+    end
+
+    Auth --> Controller["🎮 Controller Layer"]
+    Zod --> Controller
+
+    subgraph Core["⚙️ Núcleo da Aplicação"]
+        Controller -->|"Chama regras de negócio"| Service["🧠 Service Layer (Business Logic)"]
+        Service -->|"Acesso abstraído a dados"| Repo["📦 Repository Layer (Prisma ORM)"]
+    end
+
+    subgraph Data["💾 Camada de Persistência"]
+        Repo -->|"SQL Queries"| DB[("🗄️ SQLite Database (dev.db)")]
+    end
+
+    Controller -.->|"Erros não tratados / AppError"| ErrorMid["🚨 Global Error Handler"]
+    ErrorMid -.->|"JSON padronizado (400, 401, 404, 500)"| Client
 ```
 
 ## 📁 Estrutura do Repositório
