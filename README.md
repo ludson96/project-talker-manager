@@ -9,7 +9,6 @@
 [![Swagger](https://img.shields.io/badge/Swagger-OpenAPI_3-85EA2D.svg?style=for-the-badge&logo=swagger&logoColor=black)](https://swagger.io/)
 [![Zod](https://img.shields.io/badge/Zod-Validation-3E67B1.svg?style=for-the-badge&logo=zod&logoColor=white)](https://zod.dev/)
 [![Jest 29](https://img.shields.io/badge/Jest-29.7.0-C21325.svg?style=for-the-badge&logo=jest&logoColor=white)](https://jestjs.io/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
 > 🇧🇷 **Português** | 🇺🇸 [**English Version**](README.en.md)
 
@@ -27,7 +26,6 @@ API RESTful completa e escalável para **gerenciamento de eventos, palestrantes 
 - [📁 Estrutura do Repositório](#-estrutura-do-repositório)
 - [💡 Decisões Técnicas](#-decisões-técnicas)
 - [🚀 Como Executar o Projeto](#-como-executar-o-projeto)
-- [📄 Licença](#-licença)
 
 ## 📝 Sobre o Projeto
 O **Talker Manager API** é uma solução moderna para cadastro, curadoria e avaliação de palestrantes em eventos de tecnologia e conferências. O projeto foi construído para demonstrar excelência em engenharia de software backend, adotando tipagem estática rigorosa em TypeScript, isolamento de camadas de negócio e infraestrutura, validações declarativas de entrada e containerização com Docker pronta para execução em qualquer ambiente em nuvem.
@@ -194,9 +192,6 @@ docker run -p 3000:3000 talker-manager-api
 ```bash
 npm test
 ```
-
-## 📄 Licença
-Este projeto está sob a licença [MIT](https://opensource.org/licenses/MIT).
 
 <div align="center">
   Desenvolvido por <strong>Ludson Pereira dos Santos</strong> 🚀<br />
